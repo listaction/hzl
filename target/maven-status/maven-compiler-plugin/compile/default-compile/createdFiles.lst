@@ -1,0 +1,5 @@
+com/queue/sample1/App.class
+com/queue/sample1/Producer.class
+com/queue/sample1/SimpleBean.class
+com/queue/sample1/Consumer.class
+com/queue/sample1/Util.class
