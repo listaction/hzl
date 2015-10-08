@@ -1,9 +1,0 @@
-com/queue/sample1/ExclusiveHello.class
-com/queue/sample1/ExclusiveHello$1.class
-com/queue/sample1/SimpleBean.class
-com/queue/sample1/ExclusiveLoop$LoopBody.class
-com/queue/sample1/Consumer.class
-com/queue/sample1/ExclusiveLoop.class
-com/queue/sample1/App.class
-com/queue/sample1/Producer.class
-com/queue/sample1/Util.class
