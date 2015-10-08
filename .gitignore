@@ -1,0 +1,4 @@
+.*.sw?
+*.orig
+*~
+target

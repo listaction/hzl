@@ -1,5 +1,7 @@
-/Users/kram/code/java/hzlcast-1/sample1/src/main/java/com/queue/sample1/SimpleBean.java
-/Users/kram/code/java/hzlcast-1/sample1/src/main/java/com/queue/sample1/App.java
-/Users/kram/code/java/hzlcast-1/sample1/src/main/java/com/queue/sample1/Util.java
-/Users/kram/code/java/hzlcast-1/sample1/src/main/java/com/queue/sample1/Producer.java
-/Users/kram/code/java/hzlcast-1/sample1/src/main/java/com/queue/sample1/Consumer.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/App.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/Producer.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/ExclusiveLoop.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/Consumer.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/SimpleBean.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/ExclusiveHello.java
+/home/m/workspace/scalextreme/hzl/src/main/java/com/queue/sample1/Util.java
