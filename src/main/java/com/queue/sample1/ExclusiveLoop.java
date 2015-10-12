@@ -9,6 +9,8 @@ public class ExclusiveLoop implements Runnable {
 
     private static final Logger logger = Logger.getLogger(Consumer.class.getName());
 
+    private static final long LEASE_TIME_MS = 60000;
+
     private HazelcastInstance hz;
     private LoopBody body;
 
@@ -26,6 +28,7 @@ public class ExclusiveLoop implements Runnable {
         boolean loop = true;
         try {
             while(loop) {
+
                 try {
                     lock.lock();
                 } catch(Exception e) {
@@ -37,17 +40,16 @@ public class ExclusiveLoop implements Runnable {
                     }
                     continue;
                 }
+                long lockTime = System.currentTimeMillis();
                 boolean isLocked = true;
+
                 while(loop && isLocked) {
                     loop = body.run();
-                    try {
-                        isLocked = lock.isLocked();
-                    } catch(Exception e) {
-                        logger.warning("is locked failed");
+                    if (loop && lockTime + LEASE_TIME_MS < System.currentTimeMillis()) {
                         isLocked = false;
                     }
-                    logger.info("is locked: " + isLocked);
                 }
+
             }
         } finally {
             lock.unlock();
