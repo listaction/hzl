@@ -24,6 +24,7 @@ public class ExclusiveLoop implements Runnable {
     }
 
     public void run() {
+        logger.info("Starting loop");
         final ILock lock = hz.getLock(ExclusiveLoop.class.getName());
         boolean loop = true;
         try {
@@ -32,7 +33,7 @@ public class ExclusiveLoop implements Runnable {
                 try {
                     lock.lock();
                 } catch(Exception e) {
-                    logger.warning("lock failed");
+                    logger.warning("Failed locking, sleeping then retrying");
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException e2) {
@@ -46,6 +47,7 @@ public class ExclusiveLoop implements Runnable {
                 while(loop && isLocked) {
                     loop = body.run();
                     if (loop && lockTime + LEASE_TIME_MS < System.currentTimeMillis()) {
+                        logger.warning("Lease time elapsed, trying to grab lock");
                         isLocked = false;
                     }
                 }
@@ -54,6 +56,8 @@ public class ExclusiveLoop implements Runnable {
         } finally {
             lock.unlock();
         }
+
+        logger.info("Loop done");
     }
 
 }
