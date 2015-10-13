@@ -1,0 +1,13 @@
+1. Build docker image:
+./docke-build.sh
+
+2. Run our docker container multiple times in multiple consoles:
+./docker-run.sh
+
+3. Disconnect a host using iptables, there are scripts prepared to do this:
+./docker-disconnect.sh 172.17.0.34
+./docker-connect.sh 172.17.0.34
+
+4. Split network:
+PART1="172.17.0.34 172.17.0.36" PART2="172.17.0.37 172.17.0.38 172.17.0.39" ./docker-netsplit.sh REJECT
+PART1="172.17.0.34 172.17.0.36" PART2="172.17.0.37 172.17.0.38 172.17.0.39" ./docker-netsplit.sh ACCEPT
