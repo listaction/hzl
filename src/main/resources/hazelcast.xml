@@ -244,4 +244,18 @@
 
     <services enable-defaults="true"/>
 
+    <properties>
+        <!-- http://docs.hazelcast.org/docs/3.4/manual/html/configurationproperties.html -->
+        <property name="hazelcast.version.check.enabled">false</property>
+        <!-- Timeout in seconds to connect all other cluster members
+             when a member is joining a cluster. default: 120 -->
+        <property name="hazelcast.connect.all.wait.seconds">60</property>
+        <!-- Initial run delay of split brain/merge process in seconds. default: 300 -->
+        <property name="hazelcast.merge.first.run.delay.seconds">120</property>
+        <!-- Run interval of split brain/merge process in seconds. default: 120 -->
+        <property name="hazelcast.merge.next.run.delay.seconds">90</property>
+        <!-- Timeout to wait for a response when a remote call is sent, in milliseconds. default: 60000 -->
+        <property name="hazelcast.operation.call.timeout.millis">30000</property>
+    </properties>
+
 </hazelcast>

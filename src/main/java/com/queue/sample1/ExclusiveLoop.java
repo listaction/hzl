@@ -7,15 +7,24 @@ import java.util.logging.Logger;
 
 public class ExclusiveLoop implements Runnable {
 
-    private static final Logger logger = Logger.getLogger(Consumer.class.getName());
+    private static final Logger logger = Logger.getLogger(ExclusiveLoop.class.getName());
 
-    private static final long LEASE_TIME_MS = 60000;
+    private long leaseTimeMs = 5000;
+    private long lockDelayMs = 3000;
 
     private HazelcastInstance hz;
     private LoopBody body;
 
     public static abstract class LoopBody {
         public abstract boolean run();
+    }
+
+    public void setLeaseTimeMs(long leaseTimeMs) {
+        this.leaseTimeMs = leaseTimeMs;
+    }
+
+    public void setLockDelayMs(long lockDelayMs) {
+        this.lockDelayMs = lockDelayMs;
     }
 
     public ExclusiveLoop(HazelcastInstance hz, LoopBody body) {
@@ -33,9 +42,9 @@ public class ExclusiveLoop implements Runnable {
                 try {
                     lock.lock();
                 } catch(Exception e) {
-                    logger.warning("Failed locking, sleeping then retrying");
+                    logger.fine("Failed locking, sleeping then retrying");
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(lockDelayMs);
                     } catch (InterruptedException e2) {
                         // ignore
                     }
@@ -46,8 +55,8 @@ public class ExclusiveLoop implements Runnable {
 
                 while(loop && isLocked) {
                     loop = body.run();
-                    if (loop && lockTime + LEASE_TIME_MS < System.currentTimeMillis()) {
-                        logger.warning("Lease time elapsed, trying to grab lock");
+                    if (loop && lockTime + leaseTimeMs < System.currentTimeMillis()) {
+                        logger.fine("Lease time elapsed, trying to grab lock");
                         isLocked = false;
                     }
                 }
