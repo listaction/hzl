@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class ExclusiveHello implements Runnable {
 
-    private static final Logger logger = Logger.getLogger(Consumer.class.getName());
+    private static final Logger logger = Logger.getLogger(ExclusiveHello.class.getName());
 
     private HazelcastInstance hz;
 
