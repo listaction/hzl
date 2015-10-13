@@ -42,7 +42,7 @@ public class ExclusiveLoop implements Runnable {
                 try {
                     lock.lock();
                 } catch(Exception e) {
-                    logger.fine("Failed locking, sleeping then retrying");
+                    logger.info("Failed locking, sleeping then retrying");
                     try {
                         Thread.sleep(lockDelayMs);
                     } catch (InterruptedException e2) {
@@ -56,7 +56,7 @@ public class ExclusiveLoop implements Runnable {
                 while(loop && isLocked) {
                     loop = body.run();
                     if (loop && lockTime + leaseTimeMs < System.currentTimeMillis()) {
-                        logger.fine("Lease time elapsed, trying to grab lock");
+                        logger.info("Lease time elapsed, trying to grab lock");
                         isLocked = false;
                     }
                 }
