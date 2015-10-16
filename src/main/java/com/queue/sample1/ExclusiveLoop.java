@@ -42,7 +42,7 @@ public class ExclusiveLoop implements Runnable {
                 try {
                     lock.lock();
                 } catch(Exception e) {
-                    logger.info("Failed locking, sleeping then retrying, error: " + e);
+                    logger.warning("Failed locking, sleeping then retrying, error: " + e);
                     try {
                         Thread.sleep(lockDelayMs);
                     } catch (InterruptedException e2) {
