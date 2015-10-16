@@ -10,7 +10,7 @@ public class ExclusiveLoop implements Runnable {
     private static final Logger logger = Logger.getLogger(ExclusiveLoop.class.getName());
 
     private long leaseTimeMs = 5000;
-    private long lockDelayMs = 3000;
+    private long lockDelayMs = 1000;
 
     private HazelcastInstance hz;
     private LoopBody body;
@@ -42,7 +42,7 @@ public class ExclusiveLoop implements Runnable {
                 try {
                     lock.lock();
                 } catch(Exception e) {
-                    logger.info("Failed locking, sleeping then retrying");
+                    logger.info("Failed locking, sleeping then retrying, error: " + e);
                     try {
                         Thread.sleep(lockDelayMs);
                     } catch (InterruptedException e2) {
