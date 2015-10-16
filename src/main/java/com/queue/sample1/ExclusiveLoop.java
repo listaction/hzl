@@ -54,7 +54,12 @@ public class ExclusiveLoop implements Runnable {
                 boolean isLocked = true;
 
                 while(loop && isLocked) {
-                    loop = body.run();
+                    try {
+                        loop = body.run();
+                    } catch (Exception e) {
+                        logger.warning("Failed running loop, trying to grab lock, error: " + e);
+                        isLocked = false;
+                    }
                     if (loop && lockTime + leaseTimeMs < System.currentTimeMillis()) {
                         logger.info("Lease time elapsed, trying to grab lock");
                         isLocked = false;

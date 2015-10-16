@@ -251,11 +251,12 @@
              when a member is joining a cluster. default: 120 -->
         <property name="hazelcast.connect.all.wait.seconds">60</property>
         <!-- Initial run delay of split brain/merge process in seconds. default: 300 -->
-        <property name="hazelcast.merge.first.run.delay.seconds">120</property>
+        <property name="hazelcast.merge.first.run.delay.seconds">20</property>
         <!-- Run interval of split brain/merge process in seconds. default: 120 -->
-        <property name="hazelcast.merge.next.run.delay.seconds">90</property>
+        <property name="hazelcast.merge.next.run.delay.seconds">20</property>
         <!-- Timeout to wait for a response when a remote call is sent, in milliseconds. default: 60000 -->
-        <property name="hazelcast.operation.call.timeout.millis">30000</property>
+        <property name="hazelcast.operation.call.timeout.millis">10000</property>
+        <property name="hazelcast.max.no.heartbeat.seconds">30</property>
     </properties>
 
 </hazelcast>

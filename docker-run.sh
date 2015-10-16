@@ -1,3 +1,3 @@
 #!/bin/bash
 set -x
-docker run -it hzl
+docker run -it --rm hzl
